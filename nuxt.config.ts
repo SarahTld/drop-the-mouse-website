@@ -9,5 +9,15 @@ export default defineNuxtConfig({
     exposeConfig: false,
     injectPosition: 0,
     viewer: true,
+  },
+  // Configuration pour GitHub Pages
+  app: {
+    baseURL: '/drop-the-mouse-website/',
+    buildAssetsDir: '/_nuxt/'
+  },
+  nitro: {
+    prerender: {
+      routes: ['/']
+    }
   }
 })
