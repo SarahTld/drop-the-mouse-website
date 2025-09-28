@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://drop-the-mouse.com/sitemap.xml
+
+# Optimisation pour le référencement local Perpignan
+# Agence web spécialisée dans les Pyrénées-Orientales
