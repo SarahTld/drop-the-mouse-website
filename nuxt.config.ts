@@ -14,10 +14,5 @@ export default defineNuxtConfig({
   app: {
     baseURL: '/drop-the-mouse-website/',
     buildAssetsDir: '/_nuxt/'
-  },
-  nitro: {
-    prerender: {
-      routes: ['/']
-    }
   }
 })
