@@ -18,18 +18,10 @@
     <!-- Gradient Orbs -->
     <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-radial animate-pulse opacity-20"></div>
     <div class="absolute bottom-1/4 right-1/4 w-80 h-80 bg-gradient-radial animate-pulse opacity-15"></div>
-    
-    <!-- Code Rain Effect -->
-    <div class="code-rain">
-      <div class="code-line" v-for="i in 15" :key="i" 
-           :style="getCodeLineStyle(i)">
-        <span class="code-char" v-for="char in 'DEV<>{}[]'.split('')" :key="char">{{ char }}</span>
-      </div>
-    </div>
 
     <!-- Top Navigation Bar -->
     <nav class="fixed top-0 left-0 right-0 z-50">
-      <div class="w-full py-4 flex items-center justify-between" style="padding-left: 120px; padding-right: 120px;">
+      <div class="w-full py-4 flex items-center justify-between" style="padding-left: 20px; padding-right: 20px;">
         <!-- Logo Container with Mask Effect -->
         <div class="logo-container relative text-2xl font-black" style="font-family: 'Neue Montreal', sans-serif;">
           <!-- Logo Blanc (toujours visible) -->
@@ -50,7 +42,7 @@
         <!-- Navigation Menu -->
         <div class="flex items-center space-x-8">
           <button @click="openContactModal" class="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-3 rounded-full text-sm font-semibold hover:from-purple-700 hover:to-pink-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-2xl hover:shadow-purple-500/25 cursor-none">
-            Parlons de votre projet →
+            Contactez-nous
           </button>
         </div>
       </div>
@@ -97,7 +89,7 @@
       <!-- À propos Section -->
       <section ref="realisationsSection" id="about" class="py-32 bg-white relative overflow-hidden" style="margin-top: -100px;">
         <!-- Background Elements -->
-        <div class="absolute inset-0 opacity-40" style="background-image: radial-gradient(circle, rgba(156, 163, 175, 0.6) 1px, transparent 1px); background-size: 20px 20px;"></div>
+        <div class="absolute inset-0 opacity-40" style="background-image: radial-gradient(circle, rgba(156, 163, 175, 0.8) 1px, transparent 1px); background-size: 20px 20px;"></div>
         
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <!-- Section Header -->
@@ -294,7 +286,8 @@
     </div>
 
     <!-- Scroll Indicator - Mouse Icon -->
-    <div v-if="showScrollIndicator" class="fixed left-1/2 transform -translate-x-1/2 z-0 animate-bounce" style="bottom: 120px;">
+    <!-- <div v-if="showScrollIndicator" class="fixed left-1/2 transform -translate-x-1/2 z-0 animate-bounce" style="bottom: 120px;"> -->
+      <div v-if="showScrollIndicator" class="fixed left-1/2 transform -translate-x-1/2 z-0 animate-bounce" style="bottom: 50px;">
       <div class="w-6 h-10 border-2 border-white/60 rounded-full flex justify-center">
         <div class="w-1 h-3 bg-white/60 rounded-full mt-2 animate-pulse"></div>
       </div>
@@ -395,7 +388,7 @@
                 </svg>
                 Envoi en cours...
               </span>
-            </button>
+      </button>
           </form>
         </div>
       </div>
@@ -577,24 +570,6 @@ const words = [
 ]
 let currentWordIndex = 0
 
-// Code rain styles - fixed values to avoid hydration mismatch
-const codeLineStyles = ref([])
-
-const getCodeLineStyle = (index) => {
-  if (!codeLineStyles.value[index]) {
-    // Generate fixed values based on index to avoid hydration mismatch
-    const left = (index * 6.67) % 100 // 6.67 = 100/15
-    const delay = (index * 0.5) % 8
-    const duration = 8 + (index * 0.8) % 12
-    
-    codeLineStyles.value[index] = {
-      left: `${left}%`,
-      animationDelay: `${delay}s`,
-      animationDuration: `${duration}s`
-    }
-  }
-  return codeLineStyles.value[index]
-}
 
 // Rotating words function - Aidentity style (one word at a time)
 const startWordRotation = () => {
@@ -632,26 +607,47 @@ const handleScroll = () => {
 const updateLogoMask = () => {
   const logo = document.querySelector('.logo-container')
   const servicesSection = document.querySelector('#services')
+  const realisationsSection = document.querySelector('#about')
   
-  if (!logo || !servicesSection) return
+  if (!logo || !servicesSection || !realisationsSection) return
   
   const logoRect = logo.getBoundingClientRect()
   const servicesRect = servicesSection.getBoundingClientRect()
+  const realisationsRect = realisationsSection.getBoundingClientRect()
   
   // Calculer la position relative de la section par rapport au logo
   const logoTop = logoRect.top
   const logoBottom = logoRect.bottom
   const servicesTop = servicesRect.top
+  const realisationsTop = realisationsRect.top
   
-  // Si la section est au-dessus du logo, masque complet (logo blanc)
-  if (servicesTop >= logoBottom) {
+  // PRIORITÉ 1: Si on a passé la section réalisations, logo reste coloré
+  if (realisationsTop < logoTop) {
     logoMaskProgress.value = 0
   }
-  // Si la section est en dessous du logo, pas de masque (logo coloré)
+  // PRIORITÉ 2: Si on est dans la section Nos réalisations, transition progressive vers la couleur
+  else if (realisationsTop <= logoBottom && realisationsTop >= logoTop) {
+    const realisationsOverlap = logoBottom - realisationsTop
+    const logoHeight = logoRect.height
+    // Commencer la transition plus bas (offset de 30% de la hauteur du logo)
+    const offset = logoHeight * 0.3
+    const adjustedOverlap = Math.max(0, realisationsOverlap - offset)
+    const realisationsProgress = (adjustedOverlap / (logoHeight - offset)) * 100
+    logoMaskProgress.value = Math.max(0, Math.min(100, 100 - realisationsProgress))
+  }
+  // Si on est entré dans la section réalisations (en dessous du logo), logo coloré
+  else if (realisationsTop < logoTop) {
+    logoMaskProgress.value = 100
+  }
+  // PRIORITÉ 3: Si la section services est au-dessus du logo, masque complet (logo blanc)
+  else if (servicesTop >= logoBottom) {
+    logoMaskProgress.value = 0
+  }
+  // PRIORITÉ 4: Si la section services est en dessous du logo, pas de masque (logo coloré)
   else if (servicesTop <= logoTop) {
     logoMaskProgress.value = 100
   }
-  // Si la section chevauche le logo, calculer le pourcentage
+  // PRIORITÉ 5: Si la section services chevauche le logo, calculer le pourcentage
   else {
     const overlap = logoBottom - servicesTop
     const logoHeight = logoRect.height
@@ -923,40 +919,6 @@ useHead({
   50% { transform: translateY(-25px) rotate(90deg); }
 }
 
-/* Code Rain Effect */
-.code-rain {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  overflow: hidden;
-}
-
-.code-line {
-  position: absolute;
-  top: -100px;
-  color: rgba(139, 92, 246, 0.2);
-  font-family: 'Courier New', monospace;
-  font-size: 12px;
-  animation: fall linear infinite;
-}
-
-.code-char {
-  display: inline-block;
-  margin: 0 1px;
-  animation: flicker 3s infinite;
-}
-
-@keyframes fall {
-  to { transform: translateY(100vh); }
-}
-
-@keyframes flicker {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.3; }
-}
 
 /* Fade In Animations */
 @keyframes fade-in-up {

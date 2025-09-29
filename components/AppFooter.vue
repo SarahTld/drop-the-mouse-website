@@ -17,10 +17,6 @@
           <p class="text-white/70 text-lg leading-relaxed mb-6 max-w-md">
             Nous créons des expériences numériques exceptionnelles qui transforment votre vision en réalité. L'innovation et la créativité au service de votre succès.
           </p>
-          <div class="text-white/60 text-sm mb-4">
-            <p class="font-medium text-white/80">📍 Perpignan, Pyrénées-Orientales</p>
-            <p class="text-xs mt-1">Agence web locale • Services dans toute la France</p>
-          </div>
           <div class="flex space-x-4">
             <a href="https://www.facebook.com/dropthemouse" target="_blank" rel="noopener noreferrer" class="w-10 h-10 bg-white/10 hover:bg-white/20 rounded-lg flex items-center justify-center transition-colors duration-200 group">
               <svg class="w-5 h-5 text-white group-hover:text-purple-400 transition-colors duration-200" fill="currentColor" viewBox="0 0 24 24">
@@ -52,13 +48,6 @@
         <div>
           <h3 class="text-white font-semibold text-lg mb-6">Contact</h3>
           <ul class="space-y-4">
-            <li class="flex items-start space-x-3">
-              <svg class="w-5 h-5 text-purple-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-              </svg>
-              <span class="text-white/70">Perpignan, Pyrénées-Orientales</span>
-            </li>
             <li class="flex items-start space-x-3">
               <svg class="w-5 h-5 text-purple-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
