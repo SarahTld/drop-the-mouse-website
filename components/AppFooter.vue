@@ -67,7 +67,7 @@
       <!-- Bottom Footer -->
       <div class="py-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center">
         <p class="text-white/60 text-sm">
-          © 2024 DROP THE MOUSE. Tous droits réservés.
+          © 2025 DROP THE MOUSE. Tous droits réservés.
         </p>
         <div class="flex space-x-6 mt-4 md:mt-0">
           <NuxtLink to="/mentions-legales" @click="scrollToTop" class="text-white/60 hover:text-white text-sm transition-colors duration-200">Mentions légales</NuxtLink>

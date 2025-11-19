@@ -126,6 +126,17 @@
                 Applications Web
               </button>
               <button 
+                @click="setActiveCategory('site')"
+                :class="[
+                  'px-6 py-3 rounded-full text-sm font-medium transition-all duration-300',
+                  activeCategory === 'site' 
+                    ? 'bg-gradient-to-r from-emerald-600 to-teal-600 text-white shadow-lg' 
+                    : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                ]"
+              >
+                Site Web
+              </button>
+              <button 
                 @click="setActiveCategory('game')"
                 :class="[
                   'px-6 py-3 rounded-full text-sm font-medium transition-all duration-300',
@@ -139,129 +150,8 @@
             </div>
           </div>
 
-          <!-- Projects Grid -->
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <!-- Projet 1: Météo -->
-            <div 
-              class="project-card bg-gray-50 border border-gray-200 rounded-3xl p-8 hover:bg-gray-100 transition-all duration-500 group" 
-              :style="{ '--delay': '0s', '--is-visible': showRealisations ? 1 : 0 }"
-              data-category="web"
-              :class="{ 'hidden': activeCategory !== 'all' && activeCategory !== 'web' }"
-            >
-              <!-- Screenshot -->
-              <div class="mb-6 overflow-hidden rounded-2xl bg-gradient-to-br from-blue-400 to-cyan-400 p-1 relative">
-                <div class="aspect-video bg-white rounded-xl flex items-center justify-center relative">
-                  <div class="w-full h-full bg-gradient-to-b from-blue-50 to-cyan-50 rounded-xl flex items-center justify-center">
-                    <div class="text-center text-blue-400">
-                      <div class="w-16 h-16 bg-blue-400 rounded-full mx-auto mb-4 flex items-center justify-center">
-                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
-                          <path d="M6.76 4.84l-1.8-1.79-1.41 1.41 1.79 1.79 1.42-1.41zM4 10.5H1v2h3v-2zm9-9.95h-2V3.5h2V.55zm7.45 3.91l-1.41-1.41-1.79 1.79 1.41 1.41 1.79-1.79zm-3.21 13.7l1.79 1.8 1.41-1.41-1.8-1.79-1.4 1.4zM20 10.5v2h3v-2h-3zm-8-5c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm-1 16.95h2V19.5h-2v2.95zm-7.45-3.91l1.41 1.41 1.79-1.8-1.41-1.41-1.79 1.8z"/>
-                        </svg>
-                      </div>
-                      <p class="text-sm font-medium">Météo App</p>
-                    </div>
-                  </div>
-                  <!-- Badge en haut à gauche -->
-                  <div class="absolute top-3 left-3">
-                    <span class="px-3 py-1 bg-blue-500 text-white rounded-full text-sm font-medium shadow-lg">Application Web</span>
-                  </div>
-                </div>
-              </div>
-              
-              <div class="mb-6">
-                <h3 class="text-2xl font-bold text-gray-900 mb-3" style="font-family: 'Neue Montreal', sans-serif;">
-                  Météo App
-                </h3>
-                <p class="text-gray-600 leading-relaxed mb-4">
-                  Application météo moderne avec prévisions détaillées et interface intuitive.
-                </p>
-                <a href="https://sarahtld.github.io/Quel-temps-fait-il/" target="_blank" class="inline-flex items-center text-purple-600 hover:text-purple-800 font-semibold transition-colors duration-300">
-                  Voir le projet
-                  <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
-                  </svg>
-                </a>
-              </div>
-            </div>
-
-            <!-- Projet 2: Memory Game -->
-            <div 
-              class="project-card bg-gray-50 border border-gray-200 rounded-3xl p-8 hover:bg-gray-100 transition-all duration-500 group" 
-              :style="{ '--delay': '0.3s', '--is-visible': showRealisations ? 1 : 0 }"
-              data-category="game"
-              :class="{ 'hidden': activeCategory !== 'all' && activeCategory !== 'game' }"
-            >
-              <!-- Screenshot -->
-              <div class="mb-6 overflow-hidden rounded-2xl bg-gradient-to-br from-pink-400 to-rose-400 p-1 relative">
-                <div class="aspect-video bg-white rounded-xl flex items-center justify-center relative">
-                  <img 
-                    src="/images/memory-game.png" 
-                    alt="Capture d'écran - Memory Game"
-                    class="w-full h-full object-cover rounded-xl"
-                    loading="lazy"
-                  />
-                  <!-- Badge en haut à gauche -->
-                  <div class="absolute top-3 left-3">
-                    <span class="px-3 py-1 bg-pink-500 text-white rounded-full text-sm font-medium shadow-lg">Jeu Web</span>
-                  </div>
-                </div>
-              </div>
-              
-              <div class="mb-6">
-                <h3 class="text-2xl font-bold text-gray-900 mb-3" style="font-family: 'Neue Montreal', sans-serif;">
-                  Memory Game
-                </h3>
-                <p class="text-gray-600 leading-relaxed mb-4">
-                  Jeu de mémoire interactif avec animations fluides et système de score.
-                </p>
-                <a href="https://sarahtld.github.io/memory-game/#/" target="_blank" class="inline-flex items-center text-purple-600 hover:text-purple-800 font-semibold transition-colors duration-300">
-                  Voir le projet
-                  <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
-                  </svg>
-                </a>
-              </div>
-            </div>
-
-            <!-- Projet 3: Tic Tac Toe -->
-            <div 
-              class="project-card bg-gray-50 border border-gray-200 rounded-3xl p-8 hover:bg-gray-100 transition-all duration-500 group" 
-              :style="{ '--delay': '0.6s', '--is-visible': showRealisations ? 1 : 0 }"
-              data-category="game"
-              :class="{ 'hidden': activeCategory !== 'all' && activeCategory !== 'game' }"
-            >
-              <!-- Screenshot -->
-              <div class="mb-6 overflow-hidden rounded-2xl bg-gradient-to-br from-pink-400 to-rose-400 p-1 relative">
-                <div class="aspect-video bg-white rounded-xl flex items-center justify-center relative">
-                  <img 
-                    src="/images/tic-tac-toe-game.png" 
-                    alt="Capture d'écran - Tic Tac Toe"
-                    class="w-full h-full object-cover rounded-xl"
-                    loading="lazy"
-                  />
-                  <!-- Badge en haut à gauche -->
-                  <div class="absolute top-3 left-3">
-                    <span class="px-3 py-1 bg-pink-500 text-white rounded-full text-sm font-medium shadow-lg">Jeu Web</span>
-                  </div>
-                </div>
-              </div>
-              
-              <div class="mb-6">
-                <h3 class="text-2xl font-bold text-gray-900 mb-3" style="font-family: 'Neue Montreal', sans-serif;">
-                  Tic Tac Toe
-                </h3>
-                <p class="text-gray-600 leading-relaxed mb-4">
-                  Jeu de morpion classique avec interface moderne et logique de jeu avancée.
-                </p>
-                <a href="https://sarahtld.github.io/tic-tac-toe/" target="_blank" class="inline-flex items-center text-purple-600 hover:text-purple-800 font-semibold transition-colors duration-300">
-                  Voir le projet
-                  <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
-                  </svg>
-                </a>
-              </div>
-            </div>
-          </div>
+          <!-- Projects Carousel -->
+          <ProjectsCarousel :projects="projects" :active-category="activeCategory" />
         </div>
       </section>
 
@@ -535,6 +425,54 @@ const showScrollToTop = ref(false)
 const showRealisations = ref(false)
 const realisationsSection = ref(null)
 const activeCategory = ref('all')
+
+// Projects data for carousel
+const projects = ref([
+  {
+    id: 1,
+    title: 'Météo App',
+    description: 'Application météo moderne avec prévisions détaillées et interface intuitive.',
+    url: 'https://sarahtld.github.io/Quel-temps-fait-il/',
+    category: 'web',
+    badge: 'Application Web',
+    image: null,
+    alt: 'Capture d\'écran - Météo App',
+    iconType: 'weather'
+  },
+  {
+    id: 2,
+    title: 'Memory Game',
+    description: 'Jeu de mémoire interactif avec animations fluides et système de score.',
+    url: 'https://sarahtld.github.io/memory-game/#/',
+    category: 'game',
+    badge: 'Jeu Web',
+    image: '/images/memory-game.png',
+    alt: 'Capture d\'écran - Memory Game',
+    iconType: 'game'
+  },
+  {
+    id: 3,
+    title: 'Tic Tac Toe',
+    description: 'Jeu de morpion classique avec interface moderne et logique de jeu avancée.',
+    url: 'https://sarahtld.github.io/tic-tac-toe/',
+    category: 'game',
+    badge: 'Jeu Web',
+    image: '/images/tic-tac-toe-game.png',
+    alt: 'Capture d\'écran - Tic Tac Toe',
+    iconType: 'game'
+  },
+  {
+    id: 4,
+    title: 'ClésEnMain',
+    description: 'Site web d\'agence immobilière moderne avec recherche de biens, modals de connexion et pages détaillées.',
+    url: 'https://sarahtld.github.io/clesenmain-agence-immobiliere/',
+    category: 'site',
+    badge: 'Site Web',
+    image: '/images/clesenmain.png',
+    alt: 'Capture d\'écran - ClésEnMain',
+    iconType: 'key'
+  }
+])
 
 // Contact form data
 const form = ref({

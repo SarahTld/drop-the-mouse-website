@@ -152,6 +152,37 @@
               </div>
             </div>
           </div>
+
+          <!-- ClésEnMain Site -->
+          <div class="group relative cursor-pointer" @click="openProjectModal(projects[4])">
+            <div class="relative bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl overflow-hidden hover:bg-white/10 hover:border-white/20 transition-all duration-500 transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-purple-500/20">
+              <div class="relative h-64 overflow-hidden">
+                <img 
+                  v-if="projects[4].screenshot"
+                  :src="projects[4].screenshot" 
+                  :alt="projects[4].altText"
+                  class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+                <div v-else class="w-full h-full bg-gradient-to-br from-emerald-500/20 to-teal-500/20 flex items-center justify-center">
+                  <div class="w-20 h-20 bg-gradient-to-r from-emerald-400 to-teal-400 rounded-2xl flex items-center justify-center">
+                    <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z" />
+                    </svg>
+                  </div>
+                </div>
+                <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              </div>
+              
+              <div class="p-6">
+                <div class="flex items-center justify-between mb-3">
+                  <span class="text-sm text-emerald-400 font-medium">{{ projects[4].year }}</span>
+                  <span class="px-3 py-1 bg-emerald-500/20 text-emerald-400 text-xs rounded-full">Web</span>
+                </div>
+                <h3 class="text-xl font-bold text-white mb-3">{{ projects[4].title }}</h3>
+                <p class="text-white/70 text-sm leading-relaxed">{{ projects[4].description }}</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -337,6 +368,25 @@ const projects = [
     githubUrl: '#',
     screenshot: '/images/drop-the-mouse-screenshot.png',
     altText: 'Capture d\'écran du site DROP THE MOUSE'
+  },
+  {
+    id: 5,
+    title: 'ClésEnMain - Agence Immobilière',
+    year: '2025',
+    description: 'Site web d\'agence immobilière moderne avec recherche de biens, modals de connexion et pages détaillées.',
+    fullDescription: 'Site web complet d\'agence immobilière développé avec Nuxt 3 et Tailwind CSS. Le site propose une recherche avancée de biens immobiliers, des modals de connexion et d\'inscription, des pages de détail pour chaque bien, et une interface utilisateur moderne et intuitive. Le projet démontre une maîtrise des composants Vue 3 réutilisables et de l\'architecture Nuxt.',
+    technologies: ['Nuxt 3', 'Vue 3', 'Tailwind CSS', 'TypeScript', 'Composables'],
+    details: [
+      'Recherche et filtrage de biens immobiliers',
+      'Système de modals (connexion, inscription, mot de passe oublié)',
+      'Pages de détail dynamiques pour chaque bien',
+      'Composants réutilisables et architecture modulaire',
+      'Design moderne et responsive'
+    ],
+    liveUrl: 'https://sarahtld.github.io/clesenmain-agence-immobiliere/',
+    githubUrl: '#',
+    screenshot: '/images/clesenmain-screenshot.png',
+    altText: 'Capture d\'écran du site ClésEnMain'
   }
 ]
 
