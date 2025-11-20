@@ -70,23 +70,29 @@
               </ul>
               
               <!-- CTA Button -->
-              <button class="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white py-3 px-6 rounded-xl font-semibold hover:from-purple-700 hover:to-pink-700 transition-all duration-300 transform group-hover:scale-105 shadow-lg hover:shadow-xl">
+              <NuxtLink 
+                :to="`/services/${service.slug}`"
+                class="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white py-3 px-6 rounded-xl font-semibold hover:from-purple-700 hover:to-pink-700 transition-all duration-300 transform group-hover:scale-105 shadow-lg hover:shadow-xl relative z-10 block text-center"
+              >
                 En savoir plus
-              </button>
+              </NuxtLink>
             </div>
             
             <!-- Hover Effect -->
-            <div class="absolute inset-0 bg-gradient-to-r from-purple-500/5 to-pink-500/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <div class="absolute inset-0 bg-gradient-to-r from-purple-500/5 to-pink-500/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
           </div>
         </div>
       </div>
     </div>
+
   </section>
 </template>
 
 <script setup>
 import { ref, onMounted, onUnmounted, nextTick } from 'vue'
+import { useServices } from '~/composables/useServices'
 
+const { services } = useServices()
 const isVisible = ref(false)
 const servicesSection = ref(null)
 
@@ -103,44 +109,6 @@ const handleScroll = () => {
   }
 }
 
-const services = [
-  {
-    id: 1,
-    title: 'Développement Web',
-    description: 'Sites web modernes et applications web performantes avec les dernières technologies.',
-    icon: 'CodeIcon',
-    features: [
-      'Sites responsifs et optimisés',
-      'Applications web progressives',
-      'E-commerce et CMS',
-      'API REST et GraphQL'
-    ]
-  },
-  {
-    id: 2,
-    title: 'Application Mobile',
-    description: 'Applications mobiles natives et cross-platform pour iOS et Android.',
-    icon: 'MobileIcon',
-    features: [
-      'Applications natives iOS/Android',
-      'Applications cross-platform',
-      'Interface utilisateur intuitive',
-      'Performance optimisée'
-    ]
-  },
-  {
-    id: 3,
-    title: 'Design UI/UX',
-    description: 'Interfaces utilisateur intuitives et expériences digitales mémorables.',
-    icon: 'PaletteIcon',
-    features: [
-      'Design centré utilisateur',
-      'Prototypage et wireframes',
-      'Design systems cohérents',
-      'Tests utilisateurs'
-    ]
-  }
-]
 
 // Intersection Observer pour déclencher l'animation
 onMounted(() => {
@@ -194,6 +162,7 @@ onUnmounted(() => {
   opacity: 1 !important;
   transform: translateY(0) !important;
 }
+
 </style>
 
 
