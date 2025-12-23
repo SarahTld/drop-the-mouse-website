@@ -426,6 +426,9 @@ const showRealisations = ref(false)
 const realisationsSection = ref(null)
 const activeCategory = ref('all')
 
+// Helper pour les chemins d'images
+const { getImagePath } = useImagePath()
+
 // Projects data for carousel
 const projects = ref([
   {
@@ -446,7 +449,7 @@ const projects = ref([
     url: 'https://sarahtld.github.io/memory-game/#/',
     category: 'game',
     badge: 'Jeu Web',
-    image: '/images/memory-game.png',
+    image: getImagePath('/images/memory-game.png'),
     alt: 'Capture d\'écran - Memory Game',
     iconType: 'game'
   },
@@ -457,7 +460,7 @@ const projects = ref([
     url: 'https://sarahtld.github.io/tic-tac-toe/',
     category: 'game',
     badge: 'Jeu Web',
-    image: '/images/tic-tac-toe-game.png',
+    image: getImagePath('/images/tic-tac-toe-game.png'),
     alt: 'Capture d\'écran - Tic Tac Toe',
     iconType: 'game'
   },
@@ -468,7 +471,7 @@ const projects = ref([
     url: 'https://sarahtld.github.io/clesenmain-agence-immobiliere/',
     category: 'site',
     badge: 'Site Web',
-    image: '/images/clesenmain.png',
+    image: getImagePath('/images/clesenmain.png'),
     alt: 'Capture d\'écran - ClésEnMain',
     iconType: 'key'
   }

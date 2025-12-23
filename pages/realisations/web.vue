@@ -294,6 +294,7 @@
 </template>
 
 <script setup>
+const { getImagePath } = useImagePath()
 const selectedProject = ref(null)
 
 const projects = [
@@ -312,7 +313,7 @@ const projects = [
     ],
     liveUrl: 'https://sarahtld.github.io/tic-tac-toe/',
     githubUrl: 'https://github.com/sarahtld/tic-tac-toe',
-    screenshot: '/images/tic-tac-toe-screenshot.png',
+    screenshot: getImagePath('/images/tic-tac-toe-screenshot.png'),
     altText: 'Capture d\'écran du jeu Tic Tac Toe moderne'
   },
   {
@@ -330,7 +331,7 @@ const projects = [
     ],
     liveUrl: 'https://sarahtld.github.io/Quel-temps-fait-il/',
     githubUrl: 'https://github.com/sarahtld/Quel-temps-fait-il',
-    screenshot: '/images/weather-app-screenshot.png',
+    screenshot: getImagePath('/images/weather-app-screenshot.png'),
     altText: 'Capture d\'écran de l\'application météo'
   },
   {
@@ -348,7 +349,7 @@ const projects = [
     ],
     liveUrl: 'https://sarahtld.github.io/memory-game/#/',
     githubUrl: 'https://github.com/sarahtld/memory-game',
-    screenshot: '/images/memory-game-screenshot.png',
+    screenshot: getImagePath('/images/memory-game-screenshot.png'),
     altText: 'Capture d\'écran du jeu de mémoire'
   },
   {
@@ -366,7 +367,7 @@ const projects = [
     ],
     liveUrl: '#',
     githubUrl: '#',
-    screenshot: '/images/drop-the-mouse-screenshot.png',
+    screenshot: getImagePath('/images/drop-the-mouse-screenshot.png'),
     altText: 'Capture d\'écran du site DROP THE MOUSE'
   },
   {
@@ -385,7 +386,7 @@ const projects = [
     ],
     liveUrl: 'https://sarahtld.github.io/clesenmain-agence-immobiliere/',
     githubUrl: '#',
-    screenshot: '/images/clesenmain-screenshot.png',
+    screenshot: getImagePath('/images/clesenmain-screenshot.png'),
     altText: 'Capture d\'écran du site ClésEnMain'
   }
 ]
